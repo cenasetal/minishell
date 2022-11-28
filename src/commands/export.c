@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fporto <fporto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 11:54:56 by fheaton-          #+#    #+#             */
-/*   Updated: 2022/11/28 11:54:58 by fheaton-         ###   ########.fr       */
+/*   Updated: 2022/11/28 16:09:41 by fporto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 #include "utilities.h"
 #include "libft.h"
 
-//The Find Char function returns where is the char that we provided in a string.
-//It will return the full length of the string if no char is found.
 static int	find_char(char *s1, char c)
 {
 	int	x;
@@ -28,8 +26,6 @@ static int	find_char(char *s1, char c)
 	return (x);
 }
 
-//The simple export call will list all our internal environmental variable,
-//ordered alphabetically.
 int	ft_export(char **argv)
 {
 	t_dl_list	*head;

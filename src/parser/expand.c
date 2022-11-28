@@ -6,7 +6,7 @@
 /*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 11:57:41 by fheaton-          #+#    #+#             */
-/*   Updated: 2022/11/28 11:57:43 by fheaton-         ###   ########.fr       */
+/*   Updated: 2022/11/28 23:21:07 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	expand1(char **str, int start, t_cmd *cmd, int i)
 {
 	char	*s;
 	char	*big;
-	char	*var;
+	char	*tmp;
 
 	i = start - 1;
 	s = *str;
@@ -57,10 +57,10 @@ static int	expand1(char **str, int start, t_cmd *cmd, int i)
 	i -= start;
 	if (!i)
 		return (0);
-	var = ft_substr(s, start, i);
-	unmask_str(var);
-	big = ft_listget_dl(var, g_global.env);
-	ft_free(var);
+	tmp = ft_substr(s, start, i);
+	unmask_str(tmp);
+	big = ft_listget_dl(tmp, g_global.env);
+	ft_free(tmp);
 	if (!big)
 		return (0);
 	*str = replace(s, big, start - 1, (i + 1) + ((s[start] & 0x80) * 16777216));
@@ -82,9 +82,12 @@ static char	*expand_cmd(char *s, t_cmd *cmd)
 		if (i & 1)
 			continue ;
 		if ((s[i >> 1] & 0x7F) == '$')
-			i += (expand1(&s, (i >> 1) + 1, cmd, 0) << 1);
-		else if (s[i >> 1] == '*')
-			i = (wild(i >> 1, &s, cmd, -1) << 1) + (i & 1);
+		{
+			if ((s[(i >> 1) + 1] & 0x7F) == '?')
+				i += (expand_question(&s, (i >> 1), 0) << 1);
+			else
+				i += (expand1(&s, (i >> 1) + 1, cmd, 0) << 1);
+		}
 	}
 	return (s);
 }

@@ -6,7 +6,7 @@
 /*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 04:15:52 by fheaton-          #+#    #+#             */
-/*   Updated: 2022/11/28 12:36:27 by fheaton-         ###   ########.fr       */
+/*   Updated: 2022/11/28 23:20:42 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define MINISHELL_H
 
 # include "libft.h"
-
+# include "color.h"
 # include "parser.h"
 
 # ifndef CHILD_MAX
@@ -47,6 +47,7 @@ typedef struct s_global
 	char		*input;
 	char		*heredoc;
 	char		**hdoc_files;
+	int			boola;
 	int			cmd_counter;
 	int			file_counter;
 	int			hdoc_counter;

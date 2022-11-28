@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fporto <fporto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 11:54:28 by fheaton-          #+#    #+#             */
-/*   Updated: 2022/11/28 12:39:50 by fheaton-         ###   ########.fr       */
+/*   Updated: 2022/11/28 16:08:49 by fporto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@
 #include "libft.h"
 
 /*
-*   The Path Creation function is used to differentiate between built-in program
-*    calls such as ls, wc, etc, and executable programs calls with "./" or
-*    "a.out".
+*   Finds executable in PATH if exists ele executes command with relative path
 */
 static char	*path_creation(char *path, char *cmd)
 {
@@ -60,10 +58,6 @@ static void	create_env_array_loop(char **env)
 	env[++i] = NULL;
 }
 
-/*
-*   Copies our internal dual linked env list to a malloced array of strings.
-*    Each entry of the array is also malloced using ft_strjoin function.
-*/
 static char	**temp_env(char **env)
 {
 	t_dl_list	*head;

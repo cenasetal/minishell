@@ -6,7 +6,7 @@
 /*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 04:15:46 by fheaton-          #+#    #+#             */
-/*   Updated: 2022/11/28 04:21:40 by fheaton-         ###   ########.fr       */
+/*   Updated: 2022/11/28 23:21:46 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,11 @@ int			split_cmd(t_tree *t, char *c, int i);
 int			parse_op(t_tree *t);
 int			expand(t_tree *t);
 int			word_split(t_tree *t);
+int			expand_question(char **str, int start, int i);
 int			unmask(t_tree *t);
 void		free_command(t_commands *cmd);
 int			unmask_str(char *str);
 t_commands	*validate(const char *str);
-int			wild(int i, char **s, t_cmd *cmd, int norm);
 int			ft_isspecial(char s);
 void		lstsort(t_list **l);
 

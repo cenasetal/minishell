@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fporto <fporto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 11:59:32 by fheaton-          #+#    #+#             */
-/*   Updated: 2022/11/28 11:59:34 by fheaton-         ###   ########.fr       */
+/*   Updated: 2022/11/28 16:29:08 by fporto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 #include "utilities.h"
 #include "minishell.h"
 
-//Swap function is used to swap 2 nodes position on a dual linked list.
+/*
+*   Swap function is used to swap 2 nodes position on a dual linked list.
+*/
 static void	swap(t_dl_list *a, t_dl_list *b, t_dl_list *c)
 {
 	t_dl_list	*d;
@@ -31,9 +33,10 @@ static void	swap(t_dl_list *a, t_dl_list *b, t_dl_list *c)
 		d->prev = b;
 }
 
-//Sorter function will sort the list alphabetically based on the variable name.
-//Sorting method is very simple. If current and next node are not sorted, swap
-//temp and run again.
+/*
+*   Sorts the list alphabetically based on the variable name. If current and
+*    next node aren't sorted, swap them and run again.
+*/
 static void	sorter(t_dl_list *lst)
 {
 	int	ret;
@@ -51,9 +54,11 @@ static void	sorter(t_dl_list *lst)
 	}
 }
 
-//Checker function will cehck if the list is sorted alphabetically or not.
-//If it gets to the end, it will return '1' (true) as all the list is sorted.
-//Returning '0' (false) means it is still not sorted.
+/*
+*   Checks if the list is sorted alphabetically or not. If it gets to the end,
+*    returns '1' (true) as all the list is sorted.
+*    Returning '0' (false) means it is still not sorted.
+*/
 static int	checker(t_dl_list *lst)
 {
 	int	ret;
@@ -68,8 +73,10 @@ static int	checker(t_dl_list *lst)
 	return (1);
 }
 
-//Duplicates any dual linked list provided and returns a pointer to the new
-//list.
+/*
+*   Duplicates any dual linked list provided and returns a pointer to the new
+*    list.
+*/
 static t_dl_list	*duplicate_list(t_dl_list *lst)
 {
 	t_dl_list	*temp;
@@ -87,9 +94,11 @@ static t_dl_list	*duplicate_list(t_dl_list *lst)
 	return (dup_lst);
 }
 
-//Sort function for our environemntal variables list. It will duplicate and
-//sort alphabetically our list.
-//The list is destroyed after it is printed.
+/*
+*   Sort function for our environemntal variables list. It will duplicate and
+*    sort alphabetically our list.
+*    The list is destroyed after it is printed.
+*/
 int	env_sorted(void)
 {
 	t_dl_list	*lst;

@@ -3,16 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   command_exec.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fporto <fporto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 11:57:02 by fheaton-          #+#    #+#             */
-/*   Updated: 2022/11/28 11:57:03 by fheaton-         ###   ########.fr       */
+/*   Updated: 2022/11/28 16:12:29 by fporto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utilities.h"
 #include "execution.h"
 #include "minishell.h"
+
+/*
+*   Check the input files flags. If the file does not exist, it will
+*    return 0, which will make the execute to stop and exit the command loop.
+*/
+static int	file_input_instruction(t_cmd *cmd, int input)
+{
+	input = file_input(cmd->in.input, cmd->in.heredoc, cmd->in.in);
+	if (input > 0)
+	{
+		if (dup2(input, 0) != -1)
+			return (EXIT_SUCCESS);
+	}
+	return (-1);
+}
+
+int	bultin_exec(t_cmd *cmd)
+{
+	int	output;
+	int	input;
+
+	input = 0;
+	if (cmd->in.in)
+	{
+		if (file_input_instruction(cmd, input) < 0)
+			return (-1);
+	}
+	if (cmd->in.out)
+	{
+		output = file_output(cmd->in.output, cmd->in.append, cmd->in.out);
+		if (output < 0)
+			dup2(output, 1);
+	}
+	screening_one(cmd->cmd);
+	return (EXIT_SUCCESS);
+}
 
 /*
 *   Checks for the END (;) flag so it can reset the First_cmd variable;
@@ -58,9 +94,6 @@ static void	no_cmd_flagged(t_cmd *cmd)
 }
 
 /*
-*   The Command_exec function will check the command flags and redirect it to
-*    the correct function. Also, it will manage the flag for 'first command'
-*    call as well as managing the stop flag for 'OR' commands.
 *   Flags used:
 *   If (cmd_flags & 0x01) at least one argument/cmd has a possible wildcard.
 *   If (cmd_flags & 0x02) at least one argument/cmd needs to expand exit code.

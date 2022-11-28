@@ -3,15 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_spliter.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fporto <fporto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 11:57:30 by fheaton-          #+#    #+#             */
-/*   Updated: 2022/11/28 11:57:32 by fheaton-         ###   ########.fr       */
+/*   Updated: 2022/11/28 15:32:02 by fporto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "parser.h"
+
+int	word_split(t_tree *t)
+{
+	t_cmd	*cmd;
+	int		i;
+
+	cmd = (t_cmd *)t->content;
+	if (cmd)
+		cmd->cmd = ft_split(cmd->line, ' ');
+	i = 0;
+	while (i < t->lcount)
+		if (!word_split(t->leaves[i++]))
+			return (0);
+	return (1);
+}
 
 static void	*newcmd(char *key, char *c)
 {

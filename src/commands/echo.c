@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fporto <fporto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 11:53:55 by fheaton-          #+#    #+#             */
-/*   Updated: 2022/11/28 11:53:58 by fheaton-         ###   ########.fr       */
+/*   Updated: 2022/11/28 16:07:31 by fporto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,6 @@ static void	echo_flag(char **argv, int i, int j, int k)
 	}
 }
 
-//The Echo command function is used to print the inputed arguments provided.
-//It will check for the '-n' flag which removes the new line.
-//It will also print environmental varible if they are called.
 void	ft_echo(char **argv)
 {
 	int	i;

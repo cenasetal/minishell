@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fporto <fporto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 11:59:54 by fheaton-          #+#    #+#             */
-/*   Updated: 2022/11/28 11:59:56 by fheaton-         ###   ########.fr       */
+/*   Updated: 2022/11/28 16:02:21 by fporto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ void	delete_temp(char *path)
 	}
 }
 
-//The free list node will receive a dual linked list and it will free up all its
-//nodes. No malloc used on the nodes content will be freed.
 void	free_list_nodes(t_dl_list *lst)
 {
 	t_dl_list	*temp;
@@ -54,8 +52,6 @@ void	free_list_nodes(t_dl_list *lst)
 	}
 }
 
-//The free_argv function will free up all the variable on the arguments array
-//created by the split function. Also free's up the table itself.
 void	free_argv(void)
 {
 	int	x;
@@ -73,9 +69,6 @@ void	free_argv(void)
 	ft_free(g_global.argv);
 }
 
-//The free dl list function will receive and destroy all nodes on a dual linked
-//list. It will also free up the content on each node that so make sure all
-//the content is set on the heap.
 void	free_dl_list(t_dl_list *lst)
 {
 	t_dl_list	*temp;
@@ -90,9 +83,6 @@ void	free_dl_list(t_dl_list *lst)
 	}
 }
 
-/*
-*   Frees up an array of strings that was malloced.
-*/
 void	free_table(char **array)
 {
 	int	i;

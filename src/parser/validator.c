@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validator.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fporto <fporto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 11:58:37 by fheaton-          #+#    #+#             */
-/*   Updated: 2022/11/28 11:58:46 by fheaton-         ###   ########.fr       */
+/*   Updated: 2022/11/28 16:04:26 by fporto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,15 +103,6 @@ static int	check_lvls(const char *str, int i)
 	}
 	return (i);
 }
-
-//	String is wrong if:
-//		- opening parenthesys has no closing one
-//		- closing parenthesys has no open one
-//		- quotes are mismatched
-//		- parenthesys are empty
-//		- two consecutive special chars (except parenthesys)
-//		- opening parethesys followed by non opening parenthesys
-//		&& and || on the same level
 
 t_commands	*validate(const char *str)
 {

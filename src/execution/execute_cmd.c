@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fporto <fporto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 11:57:14 by fheaton-          #+#    #+#             */
-/*   Updated: 2022/11/28 11:57:16 by fheaton-         ###   ########.fr       */
+/*   Updated: 2022/11/28 16:23:57 by fporto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@
 #include "minishell.h"
 #include "utilities.h"
 
-/*
-*   It will check for all the input file requests and set the FD for them.
-*/
 static void	file_output_instruction(t_cmd *cmd)
 {
 	if (cmd->in.out)
@@ -32,9 +29,8 @@ static void	file_output_instruction(t_cmd *cmd)
 }
 
 /*
-*   It will check for all input files, and, in case of the file not existing,
-*    it will return 0, which will prevent the command to run and exiting the
-*    command loop.
+*   Check for all input files and if one doesn't exist, returns 0, which
+*    prevents the command from running and exiting the command loop.
 */
 static int	file_input_instruction(t_cmd *cmd)
 {
@@ -53,10 +49,6 @@ static int	file_input_instruction(t_cmd *cmd)
 	return (1);
 }
 
-/*
-*   Check pipe will check for the pipe flag and, if so, it will pipe the fd so
-*    it can successuly save and forward the correct FD's.
-*/
 void	check_pipe(t_cmd *cmd)
 {
 	if ((cmd->cmd_flags & 0x40) && !cmd->in.out)
@@ -72,11 +64,11 @@ void	check_pipe(t_cmd *cmd)
 }
 
 /*
-*   Execute cmd will is responsible for check all outputs and inputs, check for
-*    for pipe usage, set up the FD, and create forks. Since all commands will
-*    be executed at the same time, a list of all child PIDs will be create so
-*    all child process that are running will be close in case of a successful
-*    execute, ie, will kill all ghost processes.
+*   Checks all outputs and inputs, pipe usage, sets up the FD and create forks.
+*    All commands will be executed at the same time, a list of all child PIDs
+*    will be created so all child processes can be closed in case of a
+*    successful execute.
+*    Will kill all ghost processes.
 */
 int	execute_cmd(t_cmd *cmd)
 {

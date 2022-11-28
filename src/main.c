@@ -6,7 +6,7 @@
 /*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 12:01:01 by fheaton-          #+#    #+#             */
-/*   Updated: 2022/11/28 13:25:23 by fheaton-         ###   ########.fr       */
+/*   Updated: 2022/11/28 23:20:31 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,14 +94,13 @@ void	tree_loop(t_tree *t, int i)
 	}
 	status = dup_init_and_close('c');
 	(g_global.pid > 0) && (waitpid(g_global.pid, &status, 0));
-	if (WIFEXITED(status))
+	if (WIFEXITED(status) && !g_global.boola)
+	{
 		g_global.exit_status = WEXITSTATUS(status);
-	check_and_or_flag(cmd, t, i);
+		g_global.boola = 1;
+	}
 }
 
-/*
-*   The input loop is used to cut down some lines on the main function body.
-*/
 static void	input_loop(char *input)
 {
 	t_commands	*cmd;
@@ -126,11 +125,6 @@ static void	input_loop(char *input)
 	input = NULL;
 }
 
-/*
-*   The main function is responsible for receiving the input from the user and
-*   manage it. It will make sure the program has a promp until the used call for
-*   exit or sends the signal do quit.
-*/
 int	main(int argc, char **argv, char **env)
 {
 	char	*input;
@@ -139,10 +133,11 @@ int	main(int argc, char **argv, char **env)
 	(void) argv;
 	struct_init(env);
 	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, hsi);
-	while (42)
+	signal(SIGINT, signal_handler);
+	while ("swag")
 	{
-		input = readline("Gui:> ");
+		input = readline(CLR_PURPLE"Gui:> "CLR_RST);
+		g_global.boola = 0;
 		if (input && ft_strlen(input) != 0)
 			input_loop(input);
 		else if (input)

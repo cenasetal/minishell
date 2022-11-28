@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fporto <fporto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 11:52:41 by fheaton-          #+#    #+#             */
-/*   Updated: 2022/11/28 11:53:28 by fheaton-         ###   ########.fr       */
+/*   Updated: 2022/11/28 16:07:24 by fporto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 #include "utilities.h"
 #include "libft.h"
 
-//The Change Directory fucntion is responsible to change the directory accordin-
-//gly to the path provided by the used input and passed by the ft_cd functon.
-//It will return "-1" if system function chdir does not resolve successfully.
 static int	change_directory(t_dl_list *head, char *path)
 {
 	char	old_pwd[PATH_MAX];
@@ -44,9 +41,6 @@ static int	change_directory(t_dl_list *head, char *path)
 	return (ret);
 }
 
-//The cd function is reponsible to forward the path and/or arguments list
-//to the change_directory function. It will be used to receive the return
-//value so it can be fowarded to the internal exit status variable.
 int	ft_cd(char **argv)
 {
 	t_dl_list	*head;

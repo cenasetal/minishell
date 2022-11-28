@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fporto <fporto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:00:21 by fheaton-          #+#    #+#             */
-/*   Updated: 2022/11/28 13:06:52 by fheaton-         ###   ########.fr       */
+/*   Updated: 2022/11/28 17:08:51 by fporto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,13 @@
 #include "minishell.h"
 #include "utilities.h"
 
-void	hsi(int signal)
+void	exit_fork(void)
+{
+	ft_free(g_global.input);
+	exit(0);
+}
+
+void	signal_handler(int signal)
 {
 	rl_replace_line("", signal);
 	printf("\n");
@@ -28,8 +34,8 @@ void	hsi(int signal)
 }
 
 /*
-*   The Clean Processes function closes all possible open file descriptors and
-*    kill all open processes that were not naturally closed.
+*  Closes all possibly open file descriptors and
+*  kills all processes that were not naturally closed.
 */
 void	clean_processes(void)
 {
@@ -46,10 +52,6 @@ void	clean_processes(void)
 	}
 }
 
-/*
-*   It will re-initialize all the variables that are needed to be reseted for
-*    the input loop. It will also call the Clean Processes function.
-*/
 void	re_init(void)
 {
 	clean_processes();
