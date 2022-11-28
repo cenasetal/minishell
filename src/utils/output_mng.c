@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   output_mng.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fferreir <fferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/23 15:43:44 by fferreir          #+#    #+#             */
-/*   Updated: 2021/12/27 17:59:31 by fferreir         ###   ########.fr       */
+/*   Created: 2022/11/28 12:00:45 by fheaton-          #+#    #+#             */
+/*   Updated: 2022/11/28 12:00:47 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <fcntl.h>
-
-#include "ft_string.h"
-#include "ft_stdlib.h"
-#include "ft_list.h"
+#include "libft.h"
 
 static int	output_loop(t_list *output, int output_file)
 {

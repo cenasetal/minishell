@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fferreir <fferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/05 22:30:38 by mgueifao          #+#    #+#             */
-/*   Updated: 2021/10/14 15:28:18 by fferreir         ###   ########.fr       */
+/*   Created: 2022/11/28 11:56:37 by fheaton-          #+#    #+#             */
+/*   Updated: 2022/11/28 11:56:39 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_list.h"
-#include "ft_stdlib.h"
-#include "ft_string.h"
+#include "libft.h"
 
 //Deletes the node where the environmental variable is allocated.
 static void	node_destroyer(t_dl_list *list)

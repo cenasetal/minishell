@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_spliter.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgueifao <mgueifao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/16 02:51:20 by mgueifao          #+#    #+#             */
-/*   Updated: 2021/10/24 07:34:21 by mgueifao         ###   ########.fr       */
+/*   Created: 2022/11/28 11:57:30 by fheaton-          #+#    #+#             */
+/*   Updated: 2022/11/28 11:57:32 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
-#include "ft_stdlib.h"
-
+#include "libft.h"
 #include "parser.h"
 
 static void	*newcmd(char *key, char *c)
@@ -41,7 +39,7 @@ int	split_cmd(t_tree *t, char *c, int i)
 			&& (ft_treeadd(t, newcmd(c + i, ft_substr(c, j, i - j))))
 			&& (i += 2) && (j = i))
 		|| ((c[i] == '(') && (ft_treeadd(t, NULL))
-			&& (i = split_cmd(t->leafs[t->lcount - 1], c, i + 1)) && (j = i))
+			&& (i = split_cmd(t->leaves[t->lcount - 1], c, i + 1)) && (j = i))
 		|| ((c[i] == ';')
 			&& (ft_treeadd(t, newcmd(c + i, ft_substr(c, j, i - j))))
 			&& (i = split_cmd(t, c, i + 1)) && (j = -1))

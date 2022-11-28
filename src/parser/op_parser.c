@@ -3,19 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   op_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fferreir <fferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/16 03:47:09 by mgueifao          #+#    #+#             */
-/*   Updated: 2022/02/10 01:04:26 by fferreir         ###   ########.fr       */
+/*   Created: 2022/11/28 11:58:11 by fheaton-          #+#    #+#             */
+/*   Updated: 2022/11/28 11:58:13 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-
 #include "parser.h"
-#include "ft_string.h"
-#include "ft_ctype.h"
+#include "libft.h"
 
 int	ft_isspecial(char s)
 {
@@ -118,7 +114,7 @@ int	parse_op(t_tree *t)
 			return (0);
 	i = 0;
 	while (i < t->lcount)
-		if (!parse_op(t->leafs[i++]))
+		if (!parse_op(t->leaves[i++]))
 			return (0);
 	return (1);
 }

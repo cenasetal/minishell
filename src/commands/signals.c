@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fferreir <fferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/11 18:44:41 by fferreir          #+#    #+#             */
-/*   Updated: 2021/10/14 15:28:14 by fferreir         ###   ########.fr       */
+/*   Created: 2022/11/28 11:56:26 by fheaton-          #+#    #+#             */
+/*   Updated: 2022/11/28 11:56:27 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signal.h>
-#include <unistd.h>
-#include <stdio.h>
-
+#include "libft.h"
 #include "readline.h"
 
 //The get signal function is used to change the behavior of each signal.

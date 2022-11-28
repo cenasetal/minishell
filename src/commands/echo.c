@@ -3,18 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fferreir <fferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/05 22:30:05 by mgueifao          #+#    #+#             */
-/*   Updated: 2021/12/27 15:42:17 by fferreir         ###   ########.fr       */
+/*   Created: 2022/11/28 11:53:55 by fheaton-          #+#    #+#             */
+/*   Updated: 2022/11/28 11:53:58 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
 #include "minishell.h"
-
-#include "ft_string.h"
+#include "libft.h"
 
 static void	echo_flag(char **argv, int i, int j, int k)
 {
@@ -24,7 +21,7 @@ static void	echo_flag(char **argv, int i, int j, int k)
 		while (i > j)
 		{
 			if (ft_strcmp(argv[j], "$?"))
-				printf("%d", g_mini.exit_status);
+				printf("%d", g_global.exit_status);
 			else
 				printf("%s", argv[j]);
 			if (i > 1 + j++)

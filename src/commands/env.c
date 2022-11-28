@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fferreir <fferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/05 22:30:10 by mgueifao          #+#    #+#             */
-/*   Updated: 2021/10/20 15:05:35 by fferreir         ###   ########.fr       */
+/*   Created: 2022/11/28 11:54:08 by fheaton-          #+#    #+#             */
+/*   Updated: 2022/11/28 11:54:11 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "commands.h"
+#include "libft.h"
 
 //The env function is responsible for printing the internal environmental list.
 void	ft_env(t_dl_list *env)

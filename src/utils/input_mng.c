@@ -3,20 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   input_mng.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fferreir <fferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/07 17:00:03 by fferreir          #+#    #+#             */
-/*   Updated: 2022/02/09 00:33:29 by fferreir         ###   ########.fr       */
+/*   Created: 2022/11/28 12:00:12 by fheaton-          #+#    #+#             */
+/*   Updated: 2022/11/28 12:00:13 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <fcntl.h>
-
-#include "ft_conv.h"
-#include "ft_string.h"
-#include "ft_stdlib.h"
-
+#include "libft.h"
 #include "utilities.h"
 #include "minishell.h"
 
@@ -29,9 +23,9 @@ static int	heredoc_loop(t_list *heredoc, int input_hdoc)
 	{
 		if (input_hdoc)
 			close(input_hdoc);
-		i = ft_itoa(++g_mini.hdoc_counter);
+		i = ft_itoa(++g_global.hdoc_counter);
 		pth = ft_strjoin((char *)heredoc->content, i);
-		pth = temp_path(pth, g_mini.temp_path);
+		pth = temp_path(pth, g_global.temp_path);
 		input_hdoc = open(pth, O_RDONLY, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 		heredoc = heredoc->next;
 		ft_free(pth);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgueifao <mgueifao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/16 06:20:05 by mgueifao          #+#    #+#             */
-/*   Updated: 2021/12/24 18:56:46 by mgueifao         ###   ########.fr       */
+/*   Created: 2022/11/28 11:57:41 by fheaton-          #+#    #+#             */
+/*   Updated: 2022/11/28 11:57:43 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 #include <limits.h>
 #include <stdio.h>
 
-#include "ft_string.h"
-#include "ft_stdlib.h"
-#include "ft_ctype.h"
-#include "ft_list.h"
+#include "libft.h"
 
 #include "minishell.h"
 #include "parser.h"
@@ -62,7 +59,7 @@ static int	expand1(char **str, int start, t_cmd *cmd, int i)
 		return (0);
 	var = ft_substr(s, start, i);
 	unmask_str(var);
-	big = ft_listget_dl(var, g_mini.env);
+	big = ft_listget_dl(var, g_global.env);
 	ft_free(var);
 	if (!big)
 		return (0);
@@ -106,7 +103,7 @@ int	expand(t_tree *t)
 	}
 	i = 0;
 	while (i < t->lcount)
-		if (!expand(t->leafs[i++]))
+		if (!expand(t->leaves[i++]))
 			return (0);
 	return (1);
 }

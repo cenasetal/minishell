@@ -3,18 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fferreir <fferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/07 18:09:01 by fferreir          #+#    #+#             */
-/*   Updated: 2022/02/09 01:48:39 by fferreir         ###   ########.fr       */
+/*   Created: 2022/11/28 12:00:21 by fheaton-          #+#    #+#             */
+/*   Updated: 2022/11/28 12:00:23 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
-#include <signal.h>
-
 #include "readline.h"
+#include "libft.h"
 
 #include "minishell.h"
 #include "utilities.h"
@@ -39,10 +36,10 @@ void	clean_processes(void)
 	while (++i < MAX_FD)
 		close(i);
 	i = -1;
-	while (g_mini.pid_lst[++i] > 0)
+	while (g_global.pid_lst[++i] > 0)
 	{
-		kill(g_mini.pid_lst[i], SIGTERM);
-		g_mini.pid_lst[i] = -1;
+		kill(g_global.pid_lst[i], SIGTERM);
+		g_global.pid_lst[i] = -1;
 	}
 }
 
@@ -53,15 +50,15 @@ void	clean_processes(void)
 void	re_init(void)
 {
 	clean_processes();
-	g_mini.fd_in = 0;
-	g_mini.fd_out = 1;
-	g_mini.cmd_counter = 0;
-	g_mini.file_counter = 0;
-	g_mini.hdoc_counter = 0;
-	g_mini.pid_counter = -1;
-	g_mini.first_cmd = 1;
-	g_mini.stop = 0;
-	g_mini.and_flag = 0;
-	g_mini.or_flag = 0;
-	g_mini.es_flag = 0;
+	g_global.fd_in = 0;
+	g_global.fd_out = 1;
+	g_global.cmd_counter = 0;
+	g_global.file_counter = 0;
+	g_global.hdoc_counter = 0;
+	g_global.pid_counter = -1;
+	g_global.first_cmd = 1;
+	g_global.stop = 0;
+	g_global.and_flag = 0;
+	g_global.or_flag = 0;
+	g_global.es_flag = 0;
 }

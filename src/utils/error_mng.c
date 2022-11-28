@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   error_mng.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fferreir <fferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/05 22:57:22 by mgueifao          #+#    #+#             */
-/*   Updated: 2021/12/27 15:24:58 by fferreir         ###   ########.fr       */
+/*   Created: 2022/11/28 11:59:22 by fheaton-          #+#    #+#             */
+/*   Updated: 2022/11/28 11:59:23 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
-#include "ft_string.h"
-
+#include "libft.h"
 #include "minishell.h"
 
 //Error output function is used to output an error msg based on the error type
@@ -24,23 +23,23 @@ int	error_output(char type, int i, char *str)
 		i = 0;
 	if (type == 'c')
 	{
-		printf("minishell: command not found: %s\n", g_mini.argv[i]);
-		g_mini.exit_status = 127;
+		printf("minishell: command not found: %s\n", g_global.argv[i]);
+		g_global.exit_status = 127;
 	}
 	else if (type == 'd')
 	{
-		printf("minishell: cd: %s: No such file or directory\n", g_mini.argv[i]);
-		g_mini.exit_status = 1;
+		printf("minishell: cd: %s: No such file or directory\n", g_global.argv[i]);
+		g_global.exit_status = 1;
 	}
 	else if (type == 's')
 	{
-		printf("minishell: special character not defined: %s\n", g_mini.argv[i]);
-		g_mini.exit_status = 33;
+		printf("minishell: special character not defined: %s\n", g_global.argv[i]);
+		g_global.exit_status = 33;
 	}
 	else if (type == 'i')
 	{
 		printf("minishell: %s: No such file or directory\n", str);
-		g_mini.exit_status = 1;
+		g_global.exit_status = 1;
 	}
-	return (g_mini.exit_status);
+	return (g_global.exit_status);
 }

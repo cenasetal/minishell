@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fferreir <fferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/05 22:57:30 by mgueifao          #+#    #+#             */
-/*   Updated: 2022/02/09 00:46:08 by fferreir         ###   ########.fr       */
+/*   Created: 2022/11/28 11:59:54 by fheaton-          #+#    #+#             */
+/*   Updated: 2022/11/28 11:59:56 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-#include "ft_conv.h"
-#include "ft_string.h"
-#include "ft_stdlib.h"
-
+#include "libft.h"
 #include "minishell.h"
 
 void	delete_temp(char *path)
@@ -27,16 +22,16 @@ void	delete_temp(char *path)
 	if (!path)
 		return ;
 	i = -1;
-	while (++i < (g_mini.file_counter + 1))
+	while (++i < (g_global.file_counter + 1))
 	{
 		nbr = ft_itoa(i);
-		if (ft_strcmp(g_mini.hdoc_files[i], nbr) != 1)
+		if (ft_strcmp(g_global.hdoc_files[i], nbr) != 1)
 		{
-			file_path = ft_strjoin(path, g_mini.hdoc_files[i]);
+			file_path = ft_strjoin(path, g_global.hdoc_files[i]);
 			unlink(file_path);
 			ft_free(file_path);
-			ft_free(g_mini.hdoc_files[i]);
-			g_mini.hdoc_files[i] = ft_itoa(i);
+			ft_free(g_global.hdoc_files[i]);
+			g_global.hdoc_files[i] = ft_itoa(i);
 		}
 		ft_free(nbr);
 	}
@@ -67,15 +62,15 @@ void	free_argv(void)
 	int	y;
 
 	x = 0;
-	while (g_mini.argv[x] != NULL)
+	while (g_global.argv[x] != NULL)
 		x++;
 	y = -1;
 	while (++y < x)
 	{
-		ft_free(g_mini.argv[y]);
-		g_mini.argv[y] = NULL;
+		ft_free(g_global.argv[y]);
+		g_global.argv[y] = NULL;
 	}
-	ft_free(g_mini.argv);
+	ft_free(g_global.argv);
 }
 
 //The free dl list function will receive and destroy all nodes on a dual linked

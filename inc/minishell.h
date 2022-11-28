@@ -6,7 +6,7 @@
 /*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 04:15:52 by fheaton-          #+#    #+#             */
-/*   Updated: 2022/11/28 04:21:58 by fheaton-         ###   ########.fr       */
+/*   Updated: 2022/11/28 11:51:15 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_cd
 	char		*backup;
 }				t_cd;
 
-typedef struct s_mini
+typedef struct s_global
 {
 	char		**argv;
 	char		*str;
@@ -64,8 +64,8 @@ typedef struct s_mini
 	t_commands	*cmd;
 	t_dl_list	*env;
 	t_dl_list	*head;
-}				t_mini;
+}				t_global;
 
-extern t_mini	g_mini;
+extern t_global	g_global;
 
 #endif

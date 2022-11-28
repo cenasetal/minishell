@@ -5,26 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/05 23:17:23 by fletcher          #+#    #+#             */
-/*   Updated: 2022/11/28 04:22:41 by fheaton-         ###   ########.fr       */
+/*   Created: 2022/05/16 12:01:01 by fheaton-          #+#    #+#             */
+/*   Updated: 2022/11/28 12:01:30 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signal.h>
-#include <unistd.h>
-#include <sys/wait.h>
-#include <stdio.h>
-
-#include "readline.h"
-
-#include "~libft.h"
-
+#include "libft.h"
 #include "minishell.h"
 #include "parser.h"
 #include "utilities.h"
 #include "execution.h"
 
-t_mini	g_mini;
+t_global	g_global;
 
 /*
 *   Struct init function is used to initiate the stuct variable and cut down
@@ -32,22 +24,22 @@ t_mini	g_mini;
 */
 static void	struct_init(char **env)
 {
-	g_mini.head = ft_malloc(sizeof(t_dl_list));
-	g_mini.env = get_env(env);
-	g_mini.exit = 0;
-	g_mini.exit_status = 0;
-	g_mini.and_flag = 0;
-	g_mini.or_flag = 0;
-	g_mini.es_flag = 0;
-	g_mini.stop = 0;
-	g_mini.fd_in = 0;
-	g_mini.fd_out = 1;
-	g_mini.hdoc_counter = 0;
-	g_mini.temp_path = ft_strdup("/tmp/");
+	g_global.head = ft_malloc(sizeof(t_dl_list));
+	g_global.env = get_env(env);
+	g_global.exit = 0;
+	g_global.exit_status = 0;
+	g_global.and_flag = 0;
+	g_global.or_flag = 0;
+	g_global.es_flag = 0;
+	g_global.stop = 0;
+	g_global.fd_in = 0;
+	g_global.fd_out = 1;
+	g_global.hdoc_counter = 0;
+	g_global.temp_path = ft_strdup("/tmp/");
 	create_hdoc_and_pid_arrays();
-	g_mini.file_counter = 0;
-	g_mini.cmd_counter = 0;
-	g_mini.pid_counter = -1;
+	g_global.file_counter = 0;
+	g_global.cmd_counter = 0;
+	g_global.pid_counter = -1;
 }
 
 /*
@@ -63,8 +55,8 @@ static int	check_cmd_calls(t_tree *t)
 	step += 10;
 	if (!cmd)
 		return (0);
-	g_mini.argv = cmd->cmd;
-	g_mini.hdoc_counter = step;
+	g_global.argv = cmd->cmd;
+	g_global.hdoc_counter = step;
 	if (command_exec(cmd) == -1)
 		return (-1);
 	return (1);
@@ -86,21 +78,21 @@ void	tree_loop(t_tree *t, int i)
 	dup_init_and_close('i');
 	while (++i < t->lcount)
 	{
-		t_temp = t->leafs[i];
+		t_temp = t->leaves[i];
 		cmd = (t_cmd *)t_temp->content;
-		ret = check_cmd_calls(t->leafs[i]);
+		ret = check_cmd_calls(t->leaves[i]);
 		if (ret == -1)
 			break ;
-		if (ret == 0 && t->leafs[i])
-			tree_loop(t->leafs[i], -1);
+		if (ret == 0 && t->leaves[i])
+			tree_loop(t->leaves[i], -1);
 		if (cmd && ((cmd->cmd_flags & 0x04) || (cmd->cmd_flags & 0x08)
 				|| cmd->cmd_flags & 0x20))
 			break ;
 	}
 	status = dup_init_and_close('c');
-	(g_mini.pid > 0) && (waitpid(g_mini.pid, &status, 0));
+	(g_global.pid > 0) && (waitpid(g_global.pid, &status, 0));
 	if (WIFEXITED(status))
-		g_mini.exit_status = WEXITSTATUS(status);
+		g_global.exit_status = WEXITSTATUS(status);
 	check_and_or_flag(cmd, t, i);
 }
 
@@ -111,17 +103,17 @@ static void	input_loop(char *input)
 {
 	t_commands	*cmd;
 
-	g_mini.input = input;
-	g_mini.first_cmd = 1;
+	g_global.input = input;
+	g_global.first_cmd = 1;
 	add_history(input);
 	cmd = parse(input);
 	if (!cmd->error)
 	{
-		g_mini.cmd = cmd;
+		g_global.cmd = cmd;
 		check_heredoc(cmd->tree);
-		g_mini.hdoc_counter = 0;
+		g_global.hdoc_counter = 0;
 		tree_loop(cmd->tree, -1);
-		delete_temp(g_mini.temp_path);
+		delete_temp(g_global.temp_path);
 	}
 	else
 		printf("Syntax error code: %d\n", cmd->error);
@@ -152,7 +144,7 @@ int	main(int argc, char **argv, char **env)
 			input_loop(input);
 		else if (input)
 			ft_free(input);
-		if (g_mini.exit || !input)
+		if (g_global.exit || !input)
 			exit_loop();
 	}
 	return (0);

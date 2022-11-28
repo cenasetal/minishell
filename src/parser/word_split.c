@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   word_split.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fletcher <mgueifao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/25 02:43:06 by fletcher          #+#    #+#             */
-/*   Updated: 2021/10/25 02:43:11 by fletcher         ###   ########.fr       */
+/*   Created: 2022/11/28 11:59:04 by fheaton-          #+#    #+#             */
+/*   Updated: 2022/11/28 11:59:06 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "libft.h"
 #include "parser.h"
 
 int	word_split(t_tree *t)
@@ -23,7 +23,7 @@ int	word_split(t_tree *t)
 		cmd->cmd = ft_split(cmd->line, ' ');
 	i = 0;
 	while (i < t->lcount)
-		if (!word_split(t->leafs[i++]))
+		if (!word_split(t->leaves[i++]))
 			return (0);
 	return (1);
 }

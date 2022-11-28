@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fferreir <fferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/05 22:30:22 by mgueifao          #+#    #+#             */
-/*   Updated: 2021/10/20 15:07:41 by fferreir         ###   ########.fr       */
+/*   Created: 2022/11/28 11:54:56 by fheaton-          #+#    #+#             */
+/*   Updated: 2022/11/28 11:54:58 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "utilities.h"
-
-#include "ft_string.h"
+#include "libft.h"
 
 //The Find Char function returns where is the char that we provided in a string.
 //It will return the full length of the string if no char is found.
@@ -38,7 +37,7 @@ int	ft_export(char **argv)
 	char		*content[2];
 	char		*arg;
 
-	head = g_mini.env;
+	head = g_global.env;
 	arg = argv[1];
 	content[0] = get_name(arg, '=');
 	if (!content[0])
@@ -49,8 +48,8 @@ int	ft_export(char **argv)
 	if (!check_env_names(content[0], content[1]))
 	{
 		temp = ft_lstnew_dl(content);
-		ft_lstadd_back_dl(&g_mini.env, temp);
+		ft_lstadd_back_dl(&g_global.env, temp);
 	}
-	g_mini.env = head;
+	g_global.env = head;
 	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_exec.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fferreir <fferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/16 15:51:31 by fferreir          #+#    #+#             */
-/*   Updated: 2022/02/09 01:33:02 by fferreir         ###   ########.fr       */
+/*   Created: 2022/11/28 11:57:02 by fheaton-          #+#    #+#             */
+/*   Updated: 2022/11/28 11:57:03 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 */
 static int	stop_check(t_cmd *cmd)
 {
-	if (g_mini.stop > 0)
-		return (g_mini.exit_status);
+	if (g_global.stop > 0)
+		return (g_global.exit_status);
 	return (execute_cmd(cmd));
 }
 
@@ -34,27 +34,27 @@ static void	no_cmd_flagged(t_cmd *cmd)
 {
 	if (cmd->cmd_flags & 0x04)
 	{
-		if (g_mini.stop > 0)
-			g_mini.stop = 5;
+		if (g_global.stop > 0)
+			g_global.stop = 5;
 		else
-			g_mini.stop = -3;
-		g_mini.and_flag--;
+			g_global.stop = -3;
+		g_global.and_flag--;
 	}
 	if (cmd->cmd_flags & 0x08)
 	{
-		if (g_mini.and_flag > 0)
+		if (g_global.and_flag > 0)
 		{
-			if (g_mini.stop > 0)
-				g_mini.stop = -4;
+			if (g_global.stop > 0)
+				g_global.stop = -4;
 			else
-				g_mini.stop = 6;
-		g_mini.and_flag--;
+				g_global.stop = 6;
+		g_global.and_flag--;
 		}
-		if (g_mini.stop > 0 && g_mini.or_flag > 0)
-			g_mini.stop = 6;
-		g_mini.or_flag--;
+		if (g_global.stop > 0 && g_global.or_flag > 0)
+			g_global.stop = 6;
+		g_global.or_flag--;
 	}
-	g_mini.first_cmd = 1;
+	g_global.first_cmd = 1;
 }
 
 /*
@@ -81,13 +81,13 @@ int	command_exec(t_cmd *cmd)
 		no_cmd_flagged(cmd);
 		return (-2);
 	}
-	if (!cmd_identifier(cmd->cmd) && g_mini.first_cmd
+	if (!cmd_identifier(cmd->cmd) && g_global.first_cmd
 		&& ((cmd->cmd_flags & 0x10) || (cmd->cmd_flags & 0x20)))
 		return (bultin_exec(cmd));
 	ret = stop_check(cmd);
 	if (cmd->cmd_flags & 0x40)
-		g_mini.first_cmd = 0;
+		g_global.first_cmd = 0;
 	else
-		g_mini.first_cmd = 1;
+		g_global.first_cmd = 1;
 	return (ret);
 }

@@ -3,18 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fferreir <fferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/20 14:59:39 by fferreir          #+#    #+#             */
-/*   Updated: 2022/02/03 23:01:09 by fferreir         ###   ########.fr       */
+/*   Created: 2022/11/28 11:59:15 by fheaton-          #+#    #+#             */
+/*   Updated: 2022/11/28 11:59:17 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
-#include "ft_string.h"
-#include "ft_stdlib.h"
-#include "ft_list.h"
+#include "libft.h"
 
 #include "minishell.h"
 #include "utilities.h"
@@ -82,7 +80,7 @@ t_dl_list	*get_env(char **env)
 	int			aux;
 
 	x = -1;
-	g_mini.env = NULL;
+	g_global.env = NULL;
 	splited = ft_malloc(sizeof(char *) * 2);
 	while (env[++x] != NULL)
 	{
@@ -90,34 +88,34 @@ t_dl_list	*get_env(char **env)
 		splited[0] = ft_substr(env[x], 0, aux);
 		splited[1] = ft_substr(env[x], aux + 1, ft_strlen(env[x]) - aux);
 		temp = ft_lstnew_dl(splited);
-		ft_lstadd_back_dl(&g_mini.env, temp);
+		ft_lstadd_back_dl(&g_global.env, temp);
 	}
 	ft_free(splited);
-	return (g_mini.env);
+	return (g_global.env);
 }
 
 //The Check Env names will replace the content of the provided env variable
 //'name; if found on the internal environmental list with the provided
 //string 'content'.
-//free(g_mini.env->content);
+//free(g_global.env->content);
 int	check_env_names(char *name, char *content)
 {
 	t_dl_list	*head;
 
-	head = g_mini.env;
+	head = g_global.env;
 	while (1)
 	{
-		if (ft_strcmp(name, g_mini.env->name))
+		if (ft_strcmp(name, g_global.env->name))
 		{
-			ft_free(g_mini.env->content);
-			g_mini.env->content = ft_strdup(content);
-			g_mini.env = head;
+			ft_free(g_global.env->content);
+			g_global.env->content = ft_strdup(content);
+			g_global.env = head;
 			return (1);
 		}
-		if (g_mini.env->next == NULL)
+		if (g_global.env->next == NULL)
 			break ;
-		g_mini.env = g_mini.env->next;
+		g_global.env = g_global.env->next;
 	}
-	g_mini.env = head;
+	g_global.env = head;
 	return (0);
 }

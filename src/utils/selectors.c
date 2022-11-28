@@ -3,33 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   selectors.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fferreir <fferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/25 16:28:26 by fferreir          #+#    #+#             */
-/*   Updated: 2022/01/31 22:20:35 by fferreir         ###   ########.fr       */
+/*   Created: 2022/11/28 12:00:51 by fheaton-          #+#    #+#             */
+/*   Updated: 2022/11/28 12:00:53 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-#include "ft_string.h"
-
+#include "libft.h"
 #include "minishell.h"
 #include "commands.h"
 
 static int	screening_two(int i)
 {
-	if (ft_strcmp(g_mini.argv[i], "pwd"))
+	if (ft_strcmp(g_global.argv[i], "pwd"))
 		ft_pwd();
-	else if (ft_strcmp(g_mini.argv[i], "export"))
-		ft_export(g_mini.argv);
-	else if (ft_strcmp(g_mini.argv[i], "node"))
+	else if (ft_strcmp(g_global.argv[i], "export"))
+		ft_export(g_global.argv);
+	else if (ft_strcmp(g_global.argv[i], "node"))
 	{
-		if (ft_strlen(g_mini.argv[i]) > 0)
-			ft_lstnode_print(g_mini.env, g_mini.argv[i + 1]);
+		if (ft_strlen(g_global.argv[i]) > 0)
+			ft_lstnode_print(g_global.env, g_global.argv[i + 1]);
 	}
-	else if (ft_strcmp(g_mini.argv[i], "unset"))
-		ft_unset(g_mini.env, g_mini.argv, i);
+	else if (ft_strcmp(g_global.argv[i], "unset"))
+		ft_unset(g_global.env, g_global.argv, i);
 	else
 		i = 1;
 	return (i);
@@ -40,7 +37,7 @@ int	screening_one(char **argv)
 	int	i;
 
 	i = 0;
-	if (g_mini.argv)
+	if (g_global.argv)
 	{
 		if (ft_strcmp(argv[i], "exit"))
 			ft_exit();
@@ -51,7 +48,7 @@ int	screening_one(char **argv)
 		else if (ft_strcmp(argv[i], " "))
 			printf("\n");
 		else if (ft_strcmp(argv[i], "env"))
-			ft_env(g_mini.env);
+			ft_env(g_global.env);
 		else
 			i = screening_two(i);
 	}
@@ -65,13 +62,13 @@ void	cmd_selector(char **argv)
 		if (ft_strcmp(argv[0], "echo"))
 			ft_echo(argv);
 		else if (ft_strcmp(argv[0], "env"))
-			ft_env(g_mini.env);
+			ft_env(g_global.env);
 		else if (ft_strcmp(argv[0], "export"))
 			ft_export(argv);
 		else if (ft_strcmp(argv[0], "pwd") || ft_strcmp(argv[0], "PWD"))
 			ft_pwd();
 		else if (ft_strcmp(argv[0], "unset"))
-			ft_unset(g_mini.env, argv, 0);
+			ft_unset(g_global.env, argv, 0);
 		else if (ft_strcmp(argv[0], "cd"))
 			ft_cd(argv);
 		else

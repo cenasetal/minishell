@@ -3,19 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   wild.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fferreir <fferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/20 18:42:21 by mgueifao          #+#    #+#             */
-/*   Updated: 2022/02/10 01:04:53 by fferreir         ###   ########.fr       */
+/*   Created: 2022/11/28 11:58:55 by fheaton-          #+#    #+#             */
+/*   Updated: 2022/11/28 11:58:56 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <dirent.h>
 
 #include "parser.h"
-#include "ft_stdlib.h"
-#include "ft_string.h"
-#include "ft_list.h"
+#include "libft.h"
 
 static void	find_bound(int *start, int *end, char *s, int i)
 {

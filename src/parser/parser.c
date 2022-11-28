@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgueifao <mgueifao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/13 22:03:59 by mgueifao          #+#    #+#             */
-/*   Updated: 2021/12/07 03:37:18 by mgueifao         ###   ########.fr       */
+/*   Created: 2022/11/28 11:58:20 by fheaton-          #+#    #+#             */
+/*   Updated: 2022/11/28 11:58:22 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_stdlib.h>
-
-#include "ft_string.h"
-#include "ft_stdlib.h"
+#include "libft.h"
 
 #include "parser.h"
 #include "utilities.h"

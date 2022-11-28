@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fferreir <fferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/05 22:57:27 by mgueifao          #+#    #+#             */
-/*   Updated: 2021/10/14 15:28:41 by fferreir         ###   ########.fr       */
+/*   Created: 2022/11/28 11:59:32 by fheaton-          #+#    #+#             */
+/*   Updated: 2022/11/28 11:59:34 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_list.h"
-#include "ft_string.h"
+#include "libft.h"
 
 #include "utilities.h"
 #include "minishell.h"
@@ -95,7 +94,7 @@ int	env_sorted(void)
 {
 	t_dl_list	*lst;
 
-	lst = duplicate_list(g_mini.env);
+	lst = duplicate_list(g_global.env);
 	while (!checker(lst))
 	{
 		sorter(lst);

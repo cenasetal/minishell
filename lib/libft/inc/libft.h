@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fporto <fporto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 14:40:32 by fporto            #+#    #+#             */
-/*   Updated: 2022/04/25 21:56:07 by fporto           ###   ########.fr       */
+/*   Updated: 2022/11/28 11:31:36 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,42 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 }	t_list;
+
+typedef struct s_tree
+{
+	void			*content;
+	int				lcount;
+	struct s_tree	**leaves;
+}				t_tree;
+
+typedef struct s_dl_list
+{
+	void				*content;
+	void				*name;
+	struct s_dl_list	*prev;
+	struct s_dl_list	*next;
+}						t_dl_list;
+
+/*
+*	double_linked_list
+*/
+
+t_dl_list		*ft_lstnew_dl(char **content);
+void			ft_lstadd_back_dl(t_dl_list **lst, t_dl_list *new);
+t_dl_list		*ft_lstlast_dl(t_dl_list *lst);
+void			*ft_listget_dl(const char *key, t_dl_list *l);
+t_dl_list		*ft_lsthead_dl(t_dl_list *lst);
+void			ft_lstprint(t_dl_list *lst, char type);
+void			ft_lstnode_print(t_dl_list *lst, char *name);
+void			ft_lstnode_print_dl(t_dl_list *lst);
+t_dl_list		*ft_lstdup_dl(t_dl_list *lst);
+
+/*
+*	tree
+*/
+t_tree			*ft_treenew(void *content);
+int				ft_treeadd(t_tree *tree, void *content);
+int				ft_treeclear(t_tree *t, void (*del)(void *));
 
 int				ft_atoi(const char *s);
 void			ft_bzero(void *s, size_t n);

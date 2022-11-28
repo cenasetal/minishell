@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lstsort.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgueifao <mgueifao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/24 17:40:23 by mgueifao          #+#    #+#             */
-/*   Updated: 2021/12/25 03:18:33 by mgueifao         ###   ########.fr       */
+/*   Created: 2022/11/28 11:57:49 by fheaton-          #+#    #+#             */
+/*   Updated: 2022/11/28 11:57:50 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_list.h"
-#include "ft_string.h"
+#include "libft.h"
 
 void	lstsort(t_list **l)
 {

@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   commands.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fferreir <fferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/14 15:09:10 by fferreir          #+#    #+#             */
-/*   Updated: 2021/12/27 15:49:39 by fferreir         ###   ########.fr       */
+/*   Created: 2022/11/28 11:51:55 by fheaton-          #+#    #+#             */
+/*   Updated: 2022/11/28 11:51:58 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COMMANDS_H
 # define COMMANDS_H
-
-# include "ft_list.h"
 
 //CD cmd functions
 int		ft_cd(char **argv);

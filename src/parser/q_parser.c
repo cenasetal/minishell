@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   q_parser.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgueifao <mgueifao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/13 22:03:59 by mgueifao          #+#    #+#             */
-/*   Updated: 2021/11/16 02:16:23 by mgueifao         ###   ########.fr       */
+/*   Created: 2022/11/28 11:58:30 by fheaton-          #+#    #+#             */
+/*   Updated: 2022/11/28 11:58:31 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
-#include "ft_stdlib.h"
+#include "libft.h"
 
 #include "parser.h"
 #include "utilities.h"
@@ -46,7 +45,7 @@ int	unmask(t_tree *t)
 				return (0);
 	i = 0;
 	while (i < t->lcount)
-		if (!unmask(t->leafs[i++]))
+		if (!unmask(t->leaves[i++]))
 			return (0);
 	return (1);
 }

@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   validator.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgueifao <mgueifao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/13 16:22:56 by mgueifao          #+#    #+#             */
-/*   Updated: 2021/12/07 03:29:49 by mgueifao         ###   ########.fr       */
+/*   Created: 2022/11/28 11:58:37 by fheaton-          #+#    #+#             */
+/*   Updated: 2022/11/28 11:58:46 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-#include "ft_stdlib.h"
-#include "ft_string.h"
-#include "ft_ctype.h"
-
+#include "libft.h"
 #include "parser.h"
 
 static int	isempty(const char *str)
@@ -137,5 +132,3 @@ t_commands	*validate(const char *str)
 		cmd->error = 502;
 	return (cmd);
 }
-// else if(!check_comp(str))
-// 	cmd->error = 503;

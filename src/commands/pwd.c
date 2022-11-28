@@ -3,18 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fferreir <fferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/05 22:30:29 by mgueifao          #+#    #+#             */
-/*   Updated: 2022/02/07 01:27:35 by fferreir         ###   ########.fr       */
+/*   Created: 2022/11/28 11:55:46 by fheaton-          #+#    #+#             */
+/*   Updated: 2022/11/28 11:55:48 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include <limits.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-
 #include "minishell.h"
 
 //Print the content of the environmental variable "PWD" from the internal
@@ -37,6 +34,6 @@ int	ft_pwd(void)
 //is called.
 void	ft_exit(void)
 {
-	g_mini.exit = 1;
+	g_global.exit = 1;
 	printf("exit\n");
 }

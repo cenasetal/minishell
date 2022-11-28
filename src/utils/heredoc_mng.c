@@ -3,22 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_mng.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fferreir <fferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/26 15:26:14 by fferreir          #+#    #+#             */
-/*   Updated: 2022/02/09 01:55:37 by fferreir         ###   ########.fr       */
+/*   Created: 2022/11/28 12:00:03 by fheaton-          #+#    #+#             */
+/*   Updated: 2022/11/28 12:00:05 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-#include <fcntl.h>
-
 #include "readline.h"
-
-#include "ft_string.h"
-#include "ft_stdlib.h"
-#include "ft_conv.h"
+#include "libft.h"
 
 #include "minishell.h"
 
@@ -31,8 +24,8 @@ char	*temp_path(char *filename, char *path)
 	if (!filename || !path)
 		return (NULL);
 	pth = ft_strjoin(path, filename);
-	ft_free(g_mini.hdoc_files[g_mini.file_counter]);
-	g_mini.hdoc_files[g_mini.file_counter++] = filename;
+	ft_free(g_global.hdoc_files[g_global.file_counter]);
+	g_global.hdoc_files[g_global.file_counter++] = filename;
 	return (pth);
 }
 
@@ -47,7 +40,7 @@ static int	create_hrdoc_file(char *eof_str, char *filename)
 
 	if (!eof_str)
 		return (-1);
-	filename = temp_path(filename, g_mini.temp_path);
+	filename = temp_path(filename, g_global.temp_path);
 	if (!filename)
 		return (-1);
 	output = open(filename, 02 | 0100 | 01000, 0400 | 0200 | 040 | 04);
@@ -85,7 +78,7 @@ static void	check_heredoc_call(t_cmd *cmd)
 	while (cmd->in.heredoc)
 	{
 		eof = (char *)cmd->in.heredoc->content;
-		i = ft_itoa(++g_mini.hdoc_counter);
+		i = ft_itoa(++g_global.hdoc_counter);
 		filename = ft_strjoin(eof, i);
 		ft_free(i);
 		if (create_hrdoc_file(ft_substr(eof, 2, ft_strlen(eof)), filename) < 0)
@@ -108,7 +101,7 @@ static int	check_loop(t_tree *t)
 	step += 10;
 	if (!cmd)
 		return (0);
-	g_mini.hdoc_counter = step;
+	g_global.hdoc_counter = step;
 	check_heredoc_call(cmd);
 	return (1);
 }
@@ -122,8 +115,8 @@ void	check_heredoc(t_tree *t)
 	ret = 1;
 	while (++i < t->lcount)
 	{
-		ret = check_loop(t->leafs[i]);
-		if (ret == 0 && t->leafs[i])
-			check_heredoc(t->leafs[i]);
+		ret = check_loop(t->leaves[i]);
+		if (ret == 0 && t->leaves[i])
+			check_heredoc(t->leaves[i]);
 	}
 }

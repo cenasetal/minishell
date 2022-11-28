@@ -3,21 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fferreir <fferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/05 22:30:26 by mgueifao          #+#    #+#             */
-/*   Updated: 2022/02/09 01:24:58 by fferreir         ###   ########.fr       */
+/*   Created: 2022/11/28 11:54:28 by fheaton-          #+#    #+#             */
+/*   Updated: 2022/11/28 12:09:27 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <unistd.h>
-#include <stdlib.h>
 
 #include "minishell.h"
 #include "utilities.h"
 
-#include "ft_string.h"
-#include "ft_stdlib.h"
+#include "libft.h"
 
 /*
 *   The Path Creation function is used to differentiate between built-in program
@@ -30,9 +26,9 @@ static char	*path_creation(char *path, char *cmd)
 	char		*new_path;
 	t_dl_list	*head;
 
-	head = g_mini.env;
+	head = g_global.env;
 	if (!ft_strncmp(cmd, "./", 2) || ft_strcmp(cmd, "a.out"))
-		new_path = ft_strjoin(return_env_content(g_mini.env, "PWD"), ++cmd);
+		new_path = ft_strjoin(return_env_content(g_global.env, "PWD"), ++cmd);
 	else if (!ft_strncmp(cmd, "/", 1))
 		new_path = ft_strdup(cmd);
 	else
@@ -42,7 +38,7 @@ static char	*path_creation(char *path, char *cmd)
 		ft_free(temp);
 		temp = NULL;
 	}
-	g_mini.env = head;
+	g_global.env = head;
 	return (new_path);
 }
 
@@ -52,13 +48,13 @@ static void	create_env_array_loop(char **env)
 	int		i;
 
 	i = -1;
-	while (g_mini.env)
+	while (g_global.env)
 	{
-		temp = ft_strjoin(g_mini.env->name, "=");
-		env[++i] = ft_strjoin(temp, g_mini.env->content);
+		temp = ft_strjoin(g_global.env->name, "=");
+		env[++i] = ft_strjoin(temp, g_global.env->content);
 		ft_free(temp);
-		g_mini.env = g_mini.env->next;
-		if (!g_mini.env)
+		g_global.env = g_global.env->next;
+		if (!g_global.env)
 			break ;
 	}
 	env[++i] = NULL;
@@ -73,19 +69,19 @@ static char	**temp_env(char **env)
 	t_dl_list	*head;
 	int			size;
 
-	head = g_mini.env;
+	head = g_global.env;
 	size = 0;
-	while (g_mini.env)
+	while (g_global.env)
 	{
-		g_mini.env = g_mini.env->next;
+		g_global.env = g_global.env->next;
 		size++;
-		if (!g_mini.env)
+		if (!g_global.env)
 			break ;
 	}
-	g_mini.env = head;
+	g_global.env = head;
 	env = (char **)ft_malloc(sizeof(char *) * (size + 1));
 	create_env_array_loop(env);
-	g_mini.env = head;
+	g_global.env = head;
 	return (env);
 }
 
@@ -132,9 +128,9 @@ int	ft_execve(char **argv, int i)
 
 	if (!argv[i])
 		return (0);
-	path = return_env_content(g_mini.env, "PATH");
+	path = return_env_content(g_global.env, "PATH");
 	paths = ft_split((const char *)path, ':');
-	g_mini.str = NULL;
+	g_global.str = NULL;
 	j = path_creation_loop(argv, paths, argv[i]);
 	if (j == 127)
 		error_output('c', 0, NULL);
