@@ -6,7 +6,7 @@
 /*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 11:59:15 by fheaton-          #+#    #+#             */
-/*   Updated: 2022/11/28 11:59:17 by fheaton-         ###   ########.fr       */
+/*   Updated: 2022/11/28 12:53:13 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char	*get_name(char *str, char c)
 	x = -1;
 	if (!str)
 		return (NULL);
-	name = ft_malloc(sizeof(char *) * (ft_strlen(str) + 1));
+	name = malloc(sizeof(char *) * (ft_strlen(str) + 1));
 	while (str[++x] && str[x] != c)
 		name[x] = str[x];
 	name[x] = '\0';
@@ -81,7 +81,7 @@ t_dl_list	*get_env(char **env)
 
 	x = -1;
 	g_global.env = NULL;
-	splited = ft_malloc(sizeof(char *) * 2);
+	splited = malloc(sizeof(char *) * 2);
 	while (env[++x] != NULL)
 	{
 		aux = ft_strichr(env[x], '=');

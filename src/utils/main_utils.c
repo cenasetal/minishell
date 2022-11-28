@@ -6,12 +6,15 @@
 /*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:00:21 by fheaton-          #+#    #+#             */
-/*   Updated: 2022/11/28 12:00:23 by fheaton-         ###   ########.fr       */
+/*   Updated: 2022/11/28 13:06:52 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <signal.h>
+#include <stdio.h>
+#include <unistd.h>
+
 #include "readline.h"
-#include "libft.h"
 
 #include "minishell.h"
 #include "utilities.h"

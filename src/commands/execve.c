@@ -6,7 +6,7 @@
 /*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 11:54:28 by fheaton-          #+#    #+#             */
-/*   Updated: 2022/11/28 12:09:27 by fheaton-         ###   ########.fr       */
+/*   Updated: 2022/11/28 12:39:50 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static char	**temp_env(char **env)
 			break ;
 	}
 	g_global.env = head;
-	env = (char **)ft_malloc(sizeof(char *) * (size + 1));
+	env = (char **)malloc(sizeof(char *) * (size + 1));
 	create_env_array_loop(env);
 	g_global.env = head;
 	return (env);

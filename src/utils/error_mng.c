@@ -6,7 +6,7 @@
 /*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 11:59:22 by fheaton-          #+#    #+#             */
-/*   Updated: 2022/11/28 11:59:23 by fheaton-         ###   ########.fr       */
+/*   Updated: 2022/11/28 13:23:32 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ int	error_output(char type, int i, char *str)
 	}
 	else if (type == 'd')
 	{
-		printf("minishell: cd: %s: No such file or directory\n", g_global.argv[i]);
+		printf("minishell: cd: %s: No such file or dir\n", g_global.argv[i]);
 		g_global.exit_status = 1;
 	}
 	else if (type == 's')
 	{
-		printf("minishell: special character not defined: %s\n", g_global.argv[i]);
+		printf("minishell: special char not defined: %s\n", g_global.argv[i]);
 		g_global.exit_status = 33;
 	}
 	else if (type == 'i')

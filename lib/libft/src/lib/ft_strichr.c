@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strichr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/10 22:35:37 by fporto            #+#    #+#             */
-/*   Updated: 2022/11/28 13:21:46 by fheaton-         ###   ########.fr       */
+/*   Created: 2022/11/28 12:56:25 by fheaton-          #+#    #+#             */
+/*   Updated: 2022/11/28 13:01:55 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strcmp(const char *s1, const char *s2)
+int	ft_strichr(const char *str, const char c)
 {
-	size_t	i;
+	int	i;
 
-	if (!!s1 ^ !!s2)
-		return (0);
-	if (s1 == s2)
-		return (1);
+	if (!str)
+		return (-1);
 	i = 0;
-	while (s1[i] && s1[i] == s2[i])
+	while (str[i] != '\0')
+	{
+		if (str[i] == c)
+			return (i);
 		i++;
-	return (s1[i] == s2[i]);
+	}
+	if (c == '\0')
+		return (i);
+	return (-1);
 }

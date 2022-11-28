@@ -6,13 +6,16 @@
 /*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:00:03 by fheaton-          #+#    #+#             */
-/*   Updated: 2022/11/28 12:00:05 by fheaton-         ###   ########.fr       */
+/*   Updated: 2022/11/28 13:25:06 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
+
 #include "readline.h"
 #include "libft.h"
-
 #include "minishell.h"
 
 //The Temp Path function is responsible to create the path for the temporary
@@ -46,14 +49,14 @@ static int	create_hrdoc_file(char *eof_str, char *filename)
 	output = open(filename, 02 | 0100 | 01000, 0400 | 0200 | 040 | 04);
 	if (output < 0)
 		return (-1);
-	input = readline("> ");
+	input = readline("heredoc> ");
 	while (input && ft_strcmp(input, eof_str) != 1)
 	{
 		if (ft_strlen(input) > 0)
 			write(output, input, ft_strlen(input));
 		write(output, "\n", 1);
 		ft_free(input);
-		input = readline("> ");
+		input = readline("heredoc> ");
 	}
 	ft_free(input);
 	ft_free(eof_str);

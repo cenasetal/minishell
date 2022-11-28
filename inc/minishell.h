@@ -6,7 +6,7 @@
 /*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 04:15:52 by fheaton-          #+#    #+#             */
-/*   Updated: 2022/11/28 11:51:15 by fheaton-         ###   ########.fr       */
+/*   Updated: 2022/11/28 12:36:27 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 # include "libft.h"
 
 # include "parser.h"
-
-# define FD_MAX 256
 
 # ifndef CHILD_MAX
 #  define CHILD_MAX 512

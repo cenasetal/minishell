@@ -110,7 +110,7 @@ INC_DIRS += ${LIBFT_INC}
 LIBS += -L${LIBFT_ROOT}bin -lft
 
 # Libreadline
-READLINE_ROOT := ${LIB_ROOT}readline-master/
+READLINE_ROOT := ${LIB_ROOT}readline/
 READLINE := ${READLINE_ROOT}libreadline.a ${READLINE_ROOT}libhistory.a
 
 INC_DIRS += ${READLINE_ROOT}

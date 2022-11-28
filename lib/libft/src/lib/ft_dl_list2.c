@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dl_list.c                                       :+:      :+:    :+:   */
+/*   ft_dl_list2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 11:19:13 by fheaton-          #+#    #+#             */
-/*   Updated: 2022/11/28 11:22:21 by fheaton-         ###   ########.fr       */
+/*   Updated: 2022/11/28 13:25:56 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void	ft_lstnode_print(t_dl_list *lst, char *name)
 	{
 		if (ft_strcmp(lst->name, name))
 			printf("Content=|%s|, Name=|%s|, PREV=|%p| ADD=|%p| Next=|%p|\n",
-				(char *)lst->content, (char *)lst->name, lst->prev, lst,
-				lst->next);
+				(char *)lst->content, (char *)lst->name, (void *)lst->prev,
+				(void *)lst, (void *)lst->next);
 		if (lst->next == NULL)
 			break ;
 		lst = lst->next;

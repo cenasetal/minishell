@@ -6,7 +6,7 @@
 /*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 12:01:01 by fheaton-          #+#    #+#             */
-/*   Updated: 2022/11/28 12:01:30 by fheaton-         ###   ########.fr       */
+/*   Updated: 2022/11/28 13:25:23 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 #include "parser.h"
 #include "utilities.h"
 #include "execution.h"
+#include "readline.h"
+#include "history.h"
+#include <signal.h>
 
 t_global	g_global;
 
@@ -24,7 +27,7 @@ t_global	g_global;
 */
 static void	struct_init(char **env)
 {
-	g_global.head = ft_malloc(sizeof(t_dl_list));
+	g_global.head = malloc(sizeof(t_dl_list));
 	g_global.env = get_env(env);
 	g_global.exit = 0;
 	g_global.exit_status = 0;
@@ -139,7 +142,7 @@ int	main(int argc, char **argv, char **env)
 	signal(SIGINT, hsi);
 	while (42)
 	{
-		input = readline("minishell: ");
+		input = readline("Gui:> ");
 		if (input && ft_strlen(input) != 0)
 			input_loop(input);
 		else if (input)

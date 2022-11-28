@@ -6,7 +6,7 @@
 /*   By: fheaton- <fheaton-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:00:30 by fheaton-          #+#    #+#             */
-/*   Updated: 2022/11/28 12:00:32 by fheaton-         ###   ########.fr       */
+/*   Updated: 2022/11/28 13:24:26 by fheaton-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static void	end_flag_condition(void)
 		if (g_global.exit_status)
 			g_global.stop = 3;
 	}
-	else if (g_global.or_flag > 0 && (!g_global.es_flag || !g_global.exit_status))
+	else if (g_global.or_flag > 0 && \
+		(!g_global.es_flag || !g_global.exit_status))
 	{
 		if (g_global.exit_status)
 			g_global.stop = 4;
